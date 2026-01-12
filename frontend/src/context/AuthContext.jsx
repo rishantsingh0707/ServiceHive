@@ -15,24 +15,22 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
+  
   const login = async (email, password) => {
     const res = await api.post("/api/auth/login", { email, password });
-    console.log("LOGIN RESPONSE:", res.data);
     setAuth(res.data);
-    localStorage.setItem("auth", JSON.stringify(res.data));
   };
-
 
   const register = async (data) => {
     const res = await api.post("/api/auth/register", data);
     setAuth(res.data);
-    localStorage.setItem("auth", JSON.stringify(res.data));
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await api.post("/api/auth/logout");
     setAuth(null);
-    localStorage.removeItem("auth");
   };
+
 
   return (
     <AuthContext.Provider

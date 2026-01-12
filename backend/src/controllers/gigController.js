@@ -80,3 +80,18 @@ export const completeGig = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const getAllGigsBySearch = async (req, res) => {
+  const { search } = req.query;
+
+  const filter = {
+    status: "open"
+  };
+
+  if (search) {
+    filter.title = { $regex: search, $options: "i" };
+  }
+
+  const gigs = await Gig.find(filter).sort({ createdAt: -1 });
+  res.json(gigs);
+};

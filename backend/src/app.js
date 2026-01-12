@@ -3,10 +3,14 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import gigRoutes from "./routes/gigRoutes.js";
 import applicationRoutes from "./routes/applicationRoutes.js";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
+dotenv.config();
 
 const app = express();
 
+app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
 
