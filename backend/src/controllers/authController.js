@@ -31,12 +31,12 @@ export const register = async (req, res) => {
     });
 
     const token = generateToken(user._id);
-    
+
     res
       .cookie("token", token, {
         httpOnly: true,
         secure: true,
-        sameSite: "strict",
+        sameSite: "none",
         maxAge: 7 * 24 * 60 * 60 * 1000
       })
       .json({
@@ -67,13 +67,12 @@ export const login = async (req, res) => {
   const token = generateToken(user._id);
 
 
-  res
-    .cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 7 * 24 * 60 * 60 * 1000
-    })
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    maxAge: 7 * 24 * 60 * 60 * 1000
+  })
     .json({
       _id: user._id,
       name: user.name,
@@ -85,8 +84,8 @@ export const logout = (req, res) => {
   res
     .cookie("token", "", {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: true,
+      sameSite: "none",
       maxAge: 0
     })
     .json({ message: "Logged out successfully" });
