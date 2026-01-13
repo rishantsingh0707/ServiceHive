@@ -13,6 +13,7 @@ function App() {
   return (
     <>
       <Navbar />
+      
       <Routes>
         {/* Default */}
         <Route path="/" element={<RootRedirect />} />

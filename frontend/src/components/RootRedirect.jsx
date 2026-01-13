@@ -14,7 +14,8 @@ const RootRedirect = () => {
     return <Navigate to="/client/gigs" replace />;
   }
 
-  return <Navigate to="/gigs" replace />;
+  return <Navigate to="/login" replace />;
+  
 };
 
 export default RootRedirect;
