@@ -15,6 +15,9 @@ app.use(cors({
   credentials: true
 }));
 
+app.options("*", cors());   // <-- THIS IS CRITICAL FOR RENDER
+
+
 app.use(cookieParser());
 app.use(express.json());
 

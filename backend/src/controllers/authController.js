@@ -30,6 +30,7 @@ export const register = async (req, res) => {
       role
     });
 
+    const token = generateToken(user._id);
     
     res
       .cookie("token", token, {
@@ -65,6 +66,7 @@ export const login = async (req, res) => {
 
   const token = generateToken(user._id);
 
+
   res
     .cookie("token", token, {
       httpOnly: true,
@@ -75,7 +77,8 @@ export const login = async (req, res) => {
     .json({
       _id: user._id,
       name: user.name,
-      email: user.email
+      email: user.email,
+      role: user.role
     });
 };
 export const logout = (req, res) => {

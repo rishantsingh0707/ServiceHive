@@ -20,12 +20,14 @@ const Login = () => {
       await login(email, password);
 
       const auth = JSON.parse(localStorage.getItem("auth"));
+      console.log("Logged in user:", auth);
       if (auth.role === "client") {
         navigate("/client/gigs");
       } else {
         navigate("/");
       }
     } catch (err) {
+      console.error("Login error:", err);
       setError(err.response?.data?.message || "Login failed");
     } finally {
       setLoading(false);
