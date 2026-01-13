@@ -14,6 +14,10 @@ const RootRedirect = () => {
     return <Navigate to="/client/gigs" replace />;
   }
 
+  if (auth.role === "freelancer") {
+    return <Navigate to="/gigs" replace />;
+  }
+  
   return <Navigate to="/login" replace />;
   
 };
