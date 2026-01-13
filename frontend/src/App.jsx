@@ -14,7 +14,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        {/* Root */}
+        {/* Default */}
         <Route path="/" element={<RootRedirect />} />
 
         {/* Auth */}
@@ -24,10 +24,7 @@ function App() {
         {/* Freelancer */}
         <Route element={<ProtectedRoute role="freelancer" />}>
           <Route path="/gigs" element={<BrowseGigs />} />
-          <Route
-            path="/freelancer/applications"
-            element={<MyApplications />}
-          />
+          <Route path="/freelancer/applications" element={<MyApplications />} />
         </Route>
 
         {/* Client */}
